@@ -1,0 +1,27 @@
+{
+  "name": "task",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gollira77/crud-tasks-villalba-franco.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gollira77/crud-tasks-villalba-franco/issues"
+  },
+  "homepage": "https://github.com/gollira77/crud-tasks-villalba-franco#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mysql": "^2.18.1",
+    "sequelize": "^6.37.7"
+  }
+}
