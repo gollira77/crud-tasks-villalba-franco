@@ -1,8 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import sequelize from './src/config/database.js';
-import User from './src/models/user.model.js';
-import Task from './src/models/task.model.js';
+import userRoutes from './src/routes/user.routes.js';
 
 dotenv.config();
 
@@ -10,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(userRoutes);
 
 (async () => {
   try {
