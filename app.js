@@ -1,0 +1,23 @@
+import express from 'express';
+import dotenv from 'dotenv';
+import sequelize from './src/config/database.js';
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+
+(async () => {
+    try{
+        await sequelize.authenticate();
+        console.log("Conexión exictosa con la DB")
+    }catch(error) {
+        console.error("No hubo conexión con la BD por:",error)
+    }
+})();
+
+app.listen(PORT, () => {
+    console.log(`servidor en http://localhost:${PORT}`)
+});

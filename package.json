@@ -2,10 +2,11 @@
   "name": "task",
   "version": "1.0.0",
   "main": "app.js",
+  "type": "module",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
-
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,13 @@
   "homepage": "https://github.com/gollira77/crud-tasks-villalba-franco#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "mysql": "^2.18.1",
+    "mysql2": "^3.14.3",
     "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
