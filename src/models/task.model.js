@@ -20,6 +20,9 @@ const Task = sequelize.define('Task', {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+}, {
+  tableName: 'tasks',       
+  timestamps: true          
 });
 
 export default Task;
