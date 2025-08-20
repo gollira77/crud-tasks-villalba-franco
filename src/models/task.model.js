@@ -16,10 +16,18 @@ const Task = sequelize.define('Task', {
     type: DataTypes.STRING(100),
     allowNull: false,
   },
+  status: { 
+    type: DataTypes.STRING(50),
+    allowNull: false,
+    defaultValue: "pending", 
+  },
   isComplete: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+}, {
+  tableName: 'tasks',       
+  timestamps: true          
 });
 
 export default Task;
