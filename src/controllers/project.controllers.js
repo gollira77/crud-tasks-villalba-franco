@@ -18,16 +18,15 @@ export const getAllProjects = async (req, res) => {
       include: [
         {
           model: User,
+          as: "user", 
           attributes: ["id", "name", "email"],
-        },
-        {
-          model: Task,
-          attributes: ["id", "title", "status"],
-        },
+        }
       ],
     });
     res.status(200).json(projects);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener proyectos", error });
+    console.error(error);
+    res.status(500).json({ message: "Error al obtener proyectos", error: error.message });
   }
 };
+

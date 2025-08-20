@@ -16,11 +16,14 @@ export const getAllProfiles = async (req, res) => {
     const profiles = await Profile.findAll({
       include: {
         model: User,
+        as: "user", 
         attributes: ["id", "name", "email"],
       },
     });
     res.status(200).json(profiles);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener perfiles", error });
+    console.error(error);
+    res.status(500).json({ message: "Error al obtener perfiles", error: error.message });
   }
 };
+

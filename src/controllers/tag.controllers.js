@@ -16,6 +16,7 @@ export const getAllTags = async (req, res) => {
     const tags = await Tags.findAll({
       include: {
         model: Task,
+        as: "tasks",
         attributes: ["id", "title", "status"],
       },
     });

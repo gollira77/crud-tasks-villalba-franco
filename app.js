@@ -6,7 +6,7 @@ import taskRoutes from './src/routes/task.routes.js';
 import projectRoutes from "./src/routes/project.routes.js";
 import profileRoutes from "./src/routes/profile.routes.js";
 import tagRoutes from "./src/routes/tag.routes.js";
-import "./src/models/index.js";
+import "./src/models/relaciones.js";
 
 dotenv.config();
 

@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const Tags = sequelize.define('Tag', {
+const Tag = sequelize.define('Tag', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -17,4 +17,4 @@ const Tags = sequelize.define('Tag', {
   timestamps: true
 });
 
-export default Tags; 
+export default Tag;

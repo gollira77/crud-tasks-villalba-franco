@@ -11,13 +11,21 @@ const Project = sequelize.define('Project', {
     type: DataTypes.STRING(100),
     allowNull: false,
   },
+  description: { 
+    type: DataTypes.STRING(255),
+    allowNull: true,
+  },
   deadline: {
     type: DataTypes.DATE,
     allowNull: true,
   },
-},{
-    tableName: 'project',
-    timestamps: true
+  userId: { 
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+}, {
+  tableName: 'projects', 
+  timestamps: true,
 });
 
 export default Project;
