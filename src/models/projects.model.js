@@ -23,6 +23,10 @@ const Project = sequelize.define('Project', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  isActive: {               
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+  },
 }, {
   tableName: 'projects', 
   timestamps: true,

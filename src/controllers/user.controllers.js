@@ -1,57 +1,58 @@
-import User from '../models/user.model.js';
-import Task from '../models/task.model.js';
+import User from "../models/user.model.js";
+import Task from "../models/task.model.js";
 
 export const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    const existing = await User.findOne({ where: { email } });
+    if (existing) return res.status(400).json({ message: "Email ya registrado" });
 
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
-    }
-
-    if (name.length > 100 || email.length > 100 || password.length > 100) {
-      return res.status(400).json({ message: 'Cada campo debe tener como máximo 100 caracteres.' });
-    }
-
-    const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Ya existe un usuario con ese email.' });
-    }
-
-    const newUser = await User.create({ name, email, password });
-    res.status(201).json({ message: 'Usuario creado con éxito.', user: newUser });
-
+    const user = await User.create({ name, email, password });
+    res.status(201).json({ message: "Usuario creado", user });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al crear el usuario.' });
+    res.status(500).json({ message: "Error en el servidor", error });
   }
 };
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await User.findAll({
-      include: [{ model: Task, as: 'tasks', attributes: ['id', 'title', 'isComplete'] }],
-    });
+    const users = await User.findAll({ include: [{ model: Task, as: "tasks" }] });
     res.status(200).json(users);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al obtener los usuarios.' });
+    res.status(500).json({ message: "Error en el servidor", error });
   }
 };
 
 export const getUserById = async (req, res) => {
   try {
-    const user = await User.findByPk(req.params.id, {
-      include: [{ model: Task, as: 'tasks', attributes: ['id', 'title', 'isComplete'] }],
-    });
-
-    if (!user) {
-      return res.status(404).json({ message: 'Usuario no encontrado.' });
-    }
-
+    const user = await User.findByPk(req.params.id, { include: ["tasks"] });
+    if (!user) return res.status(404).json({ message: "Usuario no encontrado" });
     res.status(200).json(user);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al obtener el usuario.' });
+    res.status(500).json({ message: "Error en el servidor", error });
+  }
+};
+
+export const updateUser = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    if (!user) return res.status(404).json({ message: "Usuario no encontrado" });
+
+    await user.update(req.body);
+    res.status(200).json({ message: "Usuario actualizado", user });
+  } catch (error) {
+    res.status(500).json({ message: "Error en el servidor", error });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    if (!user) return res.status(404).json({ message: "Usuario no encontrado" });
+
+    await user.destroy();
+    res.status(200).json({ message: "Usuario eliminado" });
+  } catch (error) {
+    res.status(500).json({ message: "Error en el servidor", error });
   }
 };

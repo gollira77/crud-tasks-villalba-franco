@@ -27,7 +27,8 @@ const Task = sequelize.define('Task', {
   },
 }, {
   tableName: 'tasks',       
-  timestamps: true          
+  timestamps: true,
+  paranoid: true 
 });
 
 export default Task;
