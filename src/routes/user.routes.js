@@ -1,18 +1,12 @@
 import { Router } from "express";
 import { body, param } from "express-validator";
-import {
-  createUser,
-  getAllUsers,
-  getUserById,
-  updateUser,
-  deleteUser
-} from "../controllers/user.controllers.js";
+import {createUser, getAllUsers, getUserById, updateUser,deleteUser} from "../controllers/user.controllers.js";
 import { validateFields } from "../middlewares/validation.middleware.js";
 
 const router = Router();
 
 router.post(
-  "/",
+"/",
   [
     body("name").notEmpty().withMessage("El nombre es obligatorio").isLength({ max: 100 }),
     body("email").isEmail().withMessage("Debe ser un email válido"),
